@@ -11,8 +11,13 @@ public class Main {
         // - romain
         // - clément
 
-        Customer customer = new Customer("quentin", "Paris");
-        customer.setName("");
+        Customer customer1 = new Customer("Quentin", "Paris");
+        Customer customer2 = new Customer("Romaina", "Paris");
+        Customer customer3 = new Customer("Clément", "Paris");
+
+        //fix the name for customer2
+        customer2.setName("Romain");
+
 
     }
 }
