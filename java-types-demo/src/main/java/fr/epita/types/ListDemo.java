@@ -25,6 +25,8 @@ public class ListDemo {
             System.out.println(list.get(i));
         }
 
-
+        list.stream()
+                .map(String::length)
+                .forEach(System.out::println);
     }
 }

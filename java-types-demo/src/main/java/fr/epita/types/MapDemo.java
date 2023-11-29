@@ -18,8 +18,5 @@ public class MapDemo {
             entry.getValue();
             entry.getKey();
         }
-
-
-
     }
 }
