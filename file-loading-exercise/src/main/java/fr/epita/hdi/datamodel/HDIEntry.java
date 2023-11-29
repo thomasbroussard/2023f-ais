@@ -10,4 +10,16 @@ public class HDIEntry {
         this.country = country;
         this.hdi = hdi;
     }
+
+    public Integer getRank() {
+        return rank;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public double getHdi() {
+        return hdi;
+    }
 }

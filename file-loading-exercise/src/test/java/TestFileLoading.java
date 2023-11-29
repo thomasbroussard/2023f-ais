@@ -32,7 +32,15 @@ public class TestFileLoading {
             hdiEntryList.add(currentEntry);
         }
 
+        double totalHdi = 0.0;
+        for (HDIEntry entry : hdiEntryList ){
+            totalHdi += entry.getHdi();
+        }
+        System.out.println("average HDI = "  + totalHdi / hdiEntryList.size());
 
+        double average = hdiEntryList.stream()
+                .mapToDouble(h -> h.getHdi())
+                .average().getAsDouble();
 
     }
 }
