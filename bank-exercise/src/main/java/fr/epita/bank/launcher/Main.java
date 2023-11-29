@@ -3,7 +3,7 @@ package fr.epita.bank.launcher;
 import fr.epita.bank.datamodel.Customer;
 import fr.epita.bank.datamodel.InvestmentAccount;
 import fr.epita.bank.datamodel.Stock;
-import fr.epita.bank.datamodel.StockOrder;
+import fr.epita.bank.services.TransactionService;
 
 public class Main {
 
@@ -32,20 +32,11 @@ public class Main {
         int quantity = 5;
 
 
-        buyStock(stock3, investmentAccount, commissionRate, quantity);
+        TransactionService.buyStock(stock3, investmentAccount, commissionRate, quantity);
 
         System.out.println(investmentAccount.getBalance());
 
     }
 
-    private static void buyStock(Stock stock, InvestmentAccount investmentAccount, double commissionRate, int quantity) {
-        StockOrder order = new StockOrder();
-        order.setInvestmentAccount(investmentAccount);
-        order.setPrice(stock.getCurrentPrice());
-        order.setCommission(commissionRate);
-        order.setQuantity(quantity);
-        order.setStock(stock);
-        double totalPrice = (1 + order.getCommission()) * order.getPrice() * order.getQuantity();
-        investmentAccount.setBalance(investmentAccount.getBalance() - totalPrice);
-    }
+
 }
