@@ -25,6 +25,13 @@ public class TestFileLoading {
         //for each line, split the line upon "," character :
         // String[] parts = line.split(",");
         // create an hdi entry and fill the constructor with the corresponding value
+        lines.remove(0);
+        for(String line: lines){
+            String[] parts = line.split(",");
+            HDIEntry currentEntry = new HDIEntry(Integer.parseInt(parts[0]), parts[1], Double.parseDouble(parts[2]));
+            hdiEntryList.add(currentEntry);
+        }
+
 
 
     }
