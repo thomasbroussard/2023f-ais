@@ -1,4 +1,8 @@
 import fr.epita.biostat.datamodel.BioStatEntry;
+import org.knowm.xchart.CategoryChart;
+import org.knowm.xchart.CategoryChartBuilder;
+import org.knowm.xchart.SwingWrapper;
+import org.knowm.xchart.style.Styler;
 
 import java.io.File;
 import java.io.IOException;
@@ -69,6 +73,21 @@ public class TestPersonalDataLoading {
 
         System.out.println(countByAge);
 
+        // Create Chart
+        CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Count of people By Age").xAxisTitle("Age").yAxisTitle("Count").build();        // Customize Chart
+        chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideNW);
+        // Series
+        List<Integer> labels = new ArrayList<>();
+        labels.addAll(countByAge.keySet());
+
+        List<Integer> values = new ArrayList<>();
+        values.addAll(countByAge.values());
+
+        chart.addSeries("count by age",
+                labels,
+                values);
+
+        new SwingWrapper<>(chart).displayChart();
     }
 
     private static IntStream getHeightStream(List<BioStatEntry> entries) {
