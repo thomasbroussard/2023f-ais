@@ -63,6 +63,40 @@ public class TestPersonalDataLoading {
         Collections.sort(entries, (o1, o2) ->  o2.getAge() - o1.getAge());
 
 
+        //CategoryChart chart = countByAgeChart(entries, countByAge);
+
+
+        Map<String, Integer> countBySex = new LinkedHashMap<>();
+
+        for (BioStatEntry entry : entries){
+            Integer currentCountForSex = countBySex.get(entry.getSex());
+            if (currentCountForSex == null){
+                currentCountForSex = 0;
+            }
+            countBySex.put(entry.getSex(), currentCountForSex + 1);
+        }
+
+
+        // Create Chart
+        CategoryChart countBySexChart = new CategoryChartBuilder().width(800).height(600).title("Count of people By Age").xAxisTitle("Age").yAxisTitle("Count").build();        // Customize Chart
+        countBySexChart.getStyler().setLegendPosition(Styler.LegendPosition.InsideNW);
+        // Series
+        List<String> sexLabels = new ArrayList<>();
+        sexLabels.addAll(countBySex.keySet());
+
+        List<Integer> countValues = new ArrayList<>();
+        countValues.addAll(countBySex.values());
+
+        countBySexChart.addSeries("count by sex",
+                sexLabels,
+                countValues);
+
+        new SwingWrapper<>(countBySexChart).displayChart();
+
+
+    }
+
+    private static CategoryChart countByAgeChart(List<BioStatEntry> entries, Map<Integer, Integer> countByAge) {
         for (BioStatEntry entry : entries){
             Integer currentCountForAge = countByAge.get(entry.getAge());
             if (currentCountForAge == null){
@@ -88,6 +122,7 @@ public class TestPersonalDataLoading {
                 values);
 
         new SwingWrapper<>(chart).displayChart();
+        return chart;
     }
 
     private static IntStream getHeightStream(List<BioStatEntry> entries) {
